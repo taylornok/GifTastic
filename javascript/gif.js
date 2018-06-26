@@ -40,6 +40,8 @@ function makeButtons() {
 
     //To delete any exntires befor adding more
     $("#buttons-view").empty();
+
+    //This for-loop takes the strings in the topics array and turns them into buttons
     for (var i = 0; i < topics.length; i++) {
 
         var btn = $("<button>");
@@ -51,5 +53,16 @@ function makeButtons() {
     }
     
 }
-displayGifs();
+//To add new buttons and gifs
+$("#search-gif").on("click", function(event){
+    event.preventDefault();
+    //grab input from the search form
+    var gifSearch = $("#search-input").val().trim();
+    //add topic from search bar into the topics array, the loop will make the buttons.
+    topics.push(gifSearch);
+
+    makeButtons();
+})
+$(document).on("click", ".gifbtn", displayGifs);
+
 makeButtons();
