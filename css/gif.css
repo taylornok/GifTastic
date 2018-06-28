@@ -1,0 +1,26 @@
+body {
+    /* background-color: black; */
+    width: 75%;
+}
+
+image {
+    padding: 2% 2%;
+    margin-right: 30px;
+}
+
+#search-form{
+    float: right;
+    color:whitesmoke;
+}
+
+/* .container {
+    background-color: rgba(0, 0, 0, 0.2);
+    max-width: 1000px;
+    width: 100%;
+} */
+.btn {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: 125%;
+    font-weight: bold;
+} 
