@@ -18,6 +18,7 @@ function displayGifs() {
         for (let i = 0; i < 10; i++) {
             console.log("response", response);
             console.log("queryURL");
+        
 
             //div to hold gifs
             var gifDiv = $("<div class = 'gifs'>");
@@ -32,14 +33,40 @@ function displayGifs() {
             gifDiv.append(prating);
             //create an element to hold image
             $("#rating-view").append(gifDiv)
-            var gifDisplay = $("<img>").attr("src", results[i].images.fixed_height.url);
+            var gifDisplay = $("<img>").attr("src", results[i].images.fixed_height_still.url);
+
+            
+            gifDisplay.attr({
+                "data-animate": results[i].images.fixed_height.url,
+                "data-still": results[i].images.fixed_height_still.url,
+                "class": "gif",
+                
+            })
+            
             
             //Take image and append to the gif div we created.
             gifDisplay.append(gifDiv);
             //Take both of these in gif-display and send it to the pre-defined "gif-view"
+            
             $("#gif-view").append(gifDisplay);
+
+            
+            
             
         }
+        $(".gif").on("click", function() {
+
+            var state = $(this).attr("data-state");
+
+            if (state === "still") {
+              $(this).attr("src", $(this).attr("data-animate"));
+              $(this).attr("data-state", "animate");
+            } else {
+              $(this).attr("src", $(this).attr("data-still"));
+              $(this).attr("data-state", "still");
+            }
+        });
+
         
     })
     
@@ -47,6 +74,7 @@ function displayGifs() {
 function makeButtons() {
 
     //To delete any exntires before adding more
+    
     $("#buttons-view").empty();
 
     //This for-loop takes the strings in the topics array and turns them into buttons
@@ -57,6 +85,7 @@ function makeButtons() {
         btn.attr("data-name", topics[i]);
         btn.text(topics[i]);
         $("#buttons-view").append(btn);
+        
         
     }
     
@@ -69,6 +98,7 @@ $("#search-gif").on("click", function(event){
     var gifSearch = $("#search-input").val().trim();
     //add topic from search bar into the topics array, the loop will make the buttons.
     topics.push(gifSearch);
+    $("#gif-view").empty();
 
     makeButtons();
 })
