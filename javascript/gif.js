@@ -33,7 +33,7 @@ function displayGifs() {
             gifDiv.append(prating);
             //create an element to hold image
             $("#rating-view").append(gifDiv)
-            var gifDisplay = $("<img>").attr("src", results[i].images.fixed_height_still.url);
+            var gifDisplay = $("<img>").attr("src", results[i].images.fixed_height.url);
 
             
             gifDisplay.attr({
